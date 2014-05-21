@@ -4,6 +4,8 @@ class Month
 
   attr_reader :month, :year
 
+  class ParseError < StandardError; end
+
   def initialize year, month
     raise ArgumentError, "bad month" if !month.is_a?(Fixnum)
     raise ArgumentError, "bad month" if month < 1 || month > 12
@@ -87,6 +89,23 @@ class Month
 
   def self.current
     Month.from_date Date.today
+  end
+
+  def self.parse str
+    raise ParseError, str if str !~ /\d+-\d+-\d+/
+    begin
+      Month.from_date Date.parse(str)
+    rescue ArgumentError
+      raise ParseError, str
+    end
+  end
+
+  def self.try_parse str
+    begin
+      Month.parse(str)
+    rescue ParseError
+      nil
+    end
   end
 
   private
