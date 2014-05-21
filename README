@@ -1,6 +1,20 @@
 Month
 
 The months form an affine space with integers (Fixnum) as vectors between them.
+They are also totally ordered and can be compared for equality.
+
+Examples
+m1 = Month.new(2014, 5)   ==> May 2014
+m2 = m1 + 2               ==> July 2014
+m2 - m1                   ==> 2
+m2 < m1                   ==> false
+m2 == m1 + (m2 - m1)      ==> true
+m1.first_day              ==> Date.new(2014,5,1)
+m1.last_day               ==> Date.new(2014,5,31)
+m1.to_s :date => true     ==> "2014-05-01"
+Month.parse("2014-03-01") ==> March 2014
+Month.current             ==> May 2014
+
 
 Class methods
 new          : Fixnum, Fixnum 1..12 -> Month
