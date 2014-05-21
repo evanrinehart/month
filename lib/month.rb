@@ -119,7 +119,7 @@ class Month
     if m >= o
       (m.year-o.year)*12 + (m.month-o.month)
     else
-      -((o.year-o.year)*12 + (o.month-m.month))
+      -((o.year-m.year)*12 + (o.month-m.month))
     end
   end
 
