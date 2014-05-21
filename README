@@ -35,3 +35,8 @@ last_day     : Month -> Date
 Module methods
 from_date : Date -> Month
 current   : {Time} Month
+parse     : {ParseError} String -> Month
+try_parse : String -> Month | Nil
+
+Exceptions
+ParseError < StandardError
