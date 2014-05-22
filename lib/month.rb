@@ -7,9 +7,9 @@ class Month
   class ParseError < StandardError; end
 
   def initialize year, month
-    raise ArgumentError, "bad month" if !month.is_a?(Fixnum)
+    raise ArgumentError, "bad month" if !month.is_a?(Integer)
     raise ArgumentError, "bad month" if month < 1 || month > 12
-    raise ArgumentError, "bad year" if !year.is_a?(Fixnum)
+    raise ArgumentError, "bad year" if !year.is_a?(Integer)
     @month = month
     @year = year # proleptic gregorian calendar, 0 = 1BC
   end
@@ -23,18 +23,18 @@ class Month
   end
 
   def show
-    month_name = first_day.strftime("%B")
     if year > 600
-      "#{month_name} #{year}"
+      "#{Month.name month} #{year}"
     elsif year > 0
-      "#{month_name} #{year} AD"
+      "#{Month.name month} #{year} AD"
     else
-      "#{month_name} #{-(year-1)} BC"
+      "#{Month.name month} #{-(year-1)} BC"
     end
   end
 
   def + diff
     raise TypeError, "don't try to add two months" if diff.is_a?(Month)
+    raise TypeError, "expected Integer" if !diff.is_a?(Integer)
     years_diff = ((@month-1) + diff) / 12
     Month.new(
       @year + years_diff,
@@ -47,7 +47,7 @@ class Month
       v2 = Month.minus_origin self
       v1 = Month.minus_origin arg
       v2 - v1
-    elsif arg.is_a?(Fixnum)
+    elsif arg.is_a?(Integer)
       self + (-arg)
     end
   end
@@ -76,11 +76,36 @@ class Month
   end
 
   def first_day
-    Date.new(year, month, 1)
+    Date.new year, month
   end
 
   def last_day
     (first_day >> 1) - 1
+  end
+
+  def on_day_clamp d
+    raise ArgumentError, "out of range" if d < 1 || d > 31
+    try = first_day + (d-1)
+    if try.month != month
+      last_day
+    else
+      try
+    end
+  end
+
+  def on_day_rollover d
+    raise ArgumentError, "out of range" if d < 1 || d > 31
+    try = first_day + (d-1)
+    if try.month != month
+      (self + 1).first_day
+    else
+      try
+    end
+  end
+
+  def on_day d
+    raise ArgumentError, "out of range" if d > 28 || d < 1
+    first_day + (d-1)
   end
 
   def self.from_date date
@@ -120,6 +145,23 @@ class Month
       (m.year-o.year)*12 + (m.month-o.month)
     else
       -((o.year-m.year)*12 + (o.month-m.month))
+    end
+  end
+
+  def self.name m
+    case m
+      when 1 then 'January'
+      when 2 then 'February'
+      when 3 then 'March'
+      when 4 then 'April'
+      when 5 then 'May'
+      when 6 then 'June'
+      when 7 then 'July'
+      when 8 then 'August'
+      when 9 then 'September'
+      when 10 then 'October'
+      when 11 then 'November'
+      when 12 then 'December'
     end
   end
 

@@ -1,6 +1,6 @@
 Month
 
-The months form an affine space with integers (Fixnum) as vectors between them.
+The months form an affine space with integers as vectors between them.
 They are also totally ordered and can be compared for equality.
 
 Examples
@@ -17,20 +17,23 @@ Month.current             ==> May 2014
 
 
 Class methods
-new          : Fixnum, Fixnum 1..12 -> Month
-month        : Month -> Fixnum 1..12
-year         : Month -> Fixnum
+new          : Integer, Integer 1..12 -> Month
+month        : Month -> Integer 1..12
+year         : Month -> Integer
 to_s         : Month -> String
 to_s         : Month, {:date=>true} -> String
 show         : Month -> String
-+            : Month, (count:Fixnum) -> Month
--            : Month, (count:Fixnum) -> Month
--            : Month, Month -> (count:Fixnum)
++            : Month, (count:Integer) -> Month
+-            : Month, (count:Integer) -> Month
+-            : Month, Month -> (count:Integer)
 <=>          : Month, Month -> Ordering
 ==, !=       : Month, Month -> Bool
 <, >, <=, >= : Month, Month -> Bool
 first_day    : Month -> Date
 last_day     : Month -> Date
+on_day          : Month, Integer 1..28 -> Date
+on_day_clamp    : Month, Integer 1..31 -> Date
+on_day_rollover : Month, Integer 1..31 -> Date
 
 Module methods
 from_date : Date -> Month
