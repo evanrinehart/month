@@ -32,6 +32,10 @@ class Month
     end
   end
 
+  def inspect
+    show
+  end
+
   def + diff
     raise TypeError, "don't try to add two months" if diff.is_a?(Month)
     raise TypeError, "expected Integer" if !diff.is_a?(Integer)
@@ -112,7 +116,7 @@ class Month
     Month.new(date.year, date.month)
   end
 
-  def self.current
+  def self.get_current
     Month.from_date Date.today
   end
 

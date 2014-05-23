@@ -13,33 +13,35 @@ m1.first_day              ==> Date.new(2014,5,1)
 m1.last_day               ==> Date.new(2014,5,31)
 m1.to_s :date => true     ==> "2014-05-01"
 Month.parse("2014-03-01") ==> March 2014
-Month.current             ==> May 2014
+Month::get_current        ==> May 2014
 
 
 Class methods
-new          : Integer, Integer 1..12 -> Month
-month        : Month -> Integer 1..12
-year         : Month -> Integer
-to_s         : Month -> String
-to_s         : Month, {:date=>true} -> String
-show         : Month -> String
-+            : Month, (count:Integer) -> Month
--            : Month, (count:Integer) -> Month
--            : Month, Month -> (count:Integer)
-<=>          : Month, Month -> Ordering
-==, !=       : Month, Month -> Bool
-<, >, <=, >= : Month, Month -> Bool
-first_day    : Month -> Date
-last_day     : Month -> Date
-on_day          : Month, Integer 1..28 -> Date
-on_day_clamp    : Month, Integer 1..31 -> Date
-on_day_rollover : Month, Integer 1..31 -> Date
+  new          : Integer, Integer 1..12 -> Month
+  month        : Month -> Integer 1..12
+  year         : Month -> Integer
+  to_s         : Month -> String
+  to_s         : Month, {:date=>true} -> String
+  show         : Month -> String
+  +            : Month, (diff:Integer) -> Month
+  -            : Month, (diff:Integer) -> Month
+  -            : Month, Month -> (diff:Integer)
+  <=>          : Month, Month -> Ordering
+  ==, !=       : Month, Month -> Bool
+  <, >, <=, >= : Month, Month -> Bool
+  first_day    : Month -> Date
+  last_day     : Month -> Date
+  on_day          : Month, Integer 1..28 -> Date
+  on_day_clamp    : Month, Integer 1..31 -> Date
+  on_day_rollover : Month, Integer 1..31 -> Date
 
 Module methods
-from_date : Date -> Month
-current   : {Time} Month
-parse     : {ParseError} String -> Month
-try_parse : String -> Month | Nil
+  from_date : Date -> Month
+  parse     : {ParseError} String -> Month
+  try_parse : String -> Month | Nil
+
+Commands o- SystemTime
+  get_current :: Month
 
 Exceptions
-ParseError < StandardError
+  ParseError < StandardError
