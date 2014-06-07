@@ -21,8 +21,13 @@ Month.parse("2014-03-01") ==> March 2014
 Month::get_current        ==> May 2014
 
 
-Class methods
+Module methods
   new             : Integer, Integer 1..12 -> Month
+  from_date       : Date -> Month
+  parse           : {ParseError} String -> Month
+  try_parse       : String -> Month | Nil
+
+Class methods
   month           : Month -> Integer 1..12
   year            : Month -> Integer
   to_s            : Month -> String
@@ -39,11 +44,6 @@ Class methods
   on_day          : Month, Integer 1..28 -> Date
   on_day_clamp    : Month, Integer 1..31 -> Date
   on_day_rollover : Month, Integer 1..31 -> Date
-
-Module methods
-  from_date : Date -> Month
-  parse     : {ParseError} String -> Month
-  try_parse : String -> Month | Nil
 
 Commands o- SystemTime
   get_current :: Month
