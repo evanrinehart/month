@@ -39,10 +39,11 @@ class Month
   def + diff
     raise TypeError, "don't try to add two months" if diff.is_a?(Month)
     raise TypeError, "expected Integer" if !diff.is_a?(Integer)
-    years_diff = ((@month-1) + diff) / 12
+    mplus = @month - 1 + diff
+    years_diff = mplus / 12
     Month.new(
       @year + years_diff,
-      ((@month-1) + diff) % 12 + 1
+      mplus % 12 + 1
     )
   end
 
