@@ -22,20 +22,20 @@ Month::get_current        ==> May 2014
 
 
 Class methods
-  new          : Integer, Integer 1..12 -> Month
-  month        : Month -> Integer 1..12
-  year         : Month -> Integer
-  to_s         : Month -> String
-  encode       : Month -> String
-  show         : Month -> String
-  +            : Month, (diff:Integer) -> Month
-  -            : Month, (diff:Integer) -> Month
-  -            : Month, Month -> (diff:Integer)
-  <=>          : Month, Month -> Ordering
-  ==, !=       : Month, Month -> Bool
-  <, >, <=, >= : Month, Month -> Bool
-  first_day    : Month -> Date
-  last_day     : Month -> Date
+  new             : Integer, Integer 1..12 -> Month
+  month           : Month -> Integer 1..12
+  year            : Month -> Integer
+  to_s            : Month -> String
+  encode          : Month -> String
+  show            : Month -> String
+  +               : Month, (diff:Integer) -> Month
+  -               : Month, (diff:Integer) -> Month
+  -               : Month, Month -> (diff:Integer)
+  <=>             : Month, Month -> Ordering
+  ==, !=          : Month, Month -> Bool
+  <, >, <=, >=    : Month, Month -> Bool
+  first_day       : Month -> Date
+  last_day        : Month -> Date
   on_day          : Month, Integer 1..28 -> Date
   on_day_clamp    : Month, Integer 1..31 -> Date
   on_day_rollover : Month, Integer 1..31 -> Date
