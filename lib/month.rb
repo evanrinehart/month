@@ -14,12 +14,12 @@ class Month
     @year = year # proleptic gregorian calendar, 0 = 1BC
   end
 
-  def to_s opt={}
-    if opt[:date]
-      first_day.strftime("%Y-%m-%d")
-    else
-      show
-    end
+  def to_s
+    show
+  end
+
+  def encode
+    first_day.strftime("%Y-%m-%d")
   end
 
   def show
@@ -57,13 +57,7 @@ class Month
   end
 
   def <=> arg
-    case
-      when @year > arg.year then 1
-      when @year < arg.year then -1
-      when @month > arg.month then 1
-      when @month < arg.month then -1
-      else 0
-    end
+    (self - arg) <=> 0
   end
 
   def >= arg; (self <=> arg) >= 0; end
@@ -145,11 +139,7 @@ class Month
 
   def self.minus_origin m
     o = Month.arbitrary_origin
-    if m >= o
-      (m.year-o.year)*12 + (m.month-o.month)
-    else
-      -((o.year-m.year)*12 + (o.month-m.month))
-    end
+    (m.year-o.year)*12 + (m.month-o.month)
   end
 
   def self.name m
