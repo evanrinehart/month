@@ -134,7 +134,7 @@ class Month
   private
 
   def self.arbitrary_origin
-    Month.new(1890, 1)
+    Month.new(1890, 1) # can be any month
   end
 
   def self.minus_origin m
