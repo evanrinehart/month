@@ -3,8 +3,8 @@ Month
 The months are a principal homogeneous space for the additive group of integers.
 
 Since the months are not a group we cannot add elements; we can, however, take
-their "difference". That is, there is a map - : M × M -> Z that sends (m1,m2)
-to the unique element d = m1 - m2 ∈ Z such that m2 = m1 + d.
+their "difference". That is, there is a map - : M × M -> ℤ that sends (m1,m2)
+to the unique element d = m1 - m2 ∈ ℤ such that m2 = m1 + d.
   -- Wikipedia with names changed
 
 
