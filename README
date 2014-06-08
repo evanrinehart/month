@@ -7,6 +7,10 @@ their "difference". That is, there is a map - : M × M -> ℤ that sends (m1,m2)
 to the unique element d = m1 - m2 ∈ ℤ such that m2 = m1 + d.
   -- Wikipedia with names changed
 
+This idea is also called a Torsor
+
+http://www.reddit.com/r/haskell/comments/166iju/subtractable_values_are_torsors/
+
 
 Examples
 m1 = Month.new(2014, 5)   ==> May 2014
